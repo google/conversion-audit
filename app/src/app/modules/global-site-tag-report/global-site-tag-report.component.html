@@ -1,0 +1,31 @@
+<div class="global-site-tag-report-container">
+    <h1>{{title}}</h1>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <mat-form-field class="filter">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+    </mat-form-field>
+    <div class="table-container mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+            <!-- Url Column -->
+            <ng-container matColumnDef="url">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Url</th>
+                <td mat-cell *matCellDef="let element"> {{element.url}} </td>
+            </ng-container>
+            <!-- Account IDs Column -->
+            <ng-container matColumnDef="tags">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Account IDs</th>
+                <td mat-cell *matCellDef="let element"> {{element.tags}} </td>
+            </ng-container>
+            <!-- Cookies Table Column -->
+            <ng-container matColumnDef="cookies">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cookies</th>
+                <td mat-cell *matCellDef="let element"> {{element.cookies}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
