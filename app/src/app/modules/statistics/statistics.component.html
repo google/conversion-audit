@@ -1,0 +1,17 @@
+<div class="stats-container">
+    <mat-card class="card">
+        <mat-spinner class="spinner" *ngIf="showSpinner" style="position:fixed"></mat-spinner>
+        <mat-card-title>{{title}}</mat-card-title>
+        <div class="stats-details">
+            <div>
+                <h4>Pages Found: {{stats.pagesFound ? stats.pagesFound : "--"}}</h4>
+            </div>
+            <div>
+                <h4>Pages Visited: {{stats.pagesVisited ? stats.pagesVisited : "--"}}</h4>
+            </div>
+            <div>
+                <h4>Tags Found: {{stats.tagsFound ? stats.tagsFound : "--"}}</h4>
+            </div>
+        </div>
+    </mat-card>
+</div>
