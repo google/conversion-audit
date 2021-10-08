@@ -47,11 +47,11 @@ install it following the instructions in the official Angular docs [Install the 
 to set it up [Setup SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh).
 4. Once cloned, go to the ***app*** folder with ```cd app``` and install the required dependencies with ```npm install```.
 5. Then, in order to load the Chrome extension correctly, all the Angular files need to be built into bundles in a single folder with the required html, js, css and manifest files that will used by the extension. To build the files execute the build script ```./build.sh```. After this, a new ***dist*** folder will be created. This is the folder that will be loaded in the Chrome Extensions page.
-Once the files are built, the console will show something like this:
-    ✔ Browser application bundle generation complete.
-    ✔ Copying assets complete.
-    ✔ Index html generation complete.
-NOTE: If for some reason the code is changed, it needs to be rebuilt and reloaded in Chrome again to identify the changes.
+- Once the files are built, the console will show something like this:
+    - ✔ Browser application bundle generation complete.
+    - ✔ Copying assets complete.
+    - ✔ Index html generation complete.
+- NOTE: If for some reason the code is changed, it needs to be rebuilt and reloaded in Chrome again to identify the changes.
 6. Open a Chrome browser window, navigate the extensions management page by browsing to: chrome://extensions/
 7. On the top right of the page flip the "Developer Mode" switch to on.
 8. At the top of the page, on the left, click the “Load Unpacked Extension ...” button.
