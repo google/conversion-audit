@@ -1,14 +1,14 @@
 # Conversion Audit Tool
 
-The Conversion Tag Audit Tool is a chrome extension that crawls a website and
-generates a gTag (and Google Analytics, Google Ads and Floodlight event tags)
+The Conversion Tag Audit Tool is a Chrome extension that crawls a website and
+generates a gTag (Google Analytics, Google Ads and Floodlight event tags)
 report by monitoring network traffic from the page.
 
 In this document, we will be outlining the installation, base functionality,
 features and way to use the Conversion Tag Audit Tool that may come up in most
 use cases.
 
-The Conversion Tag Audit Tool is not an officially supported Google product.
+***The Conversion Tag Audit Tool is not an officially supported Google product.***
 
 ## License
 
@@ -25,12 +25,39 @@ under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 
-Note that these code samples being shared are not official Google products and
-are not formally supported.
+***Note that these code samples being shared are not official Google products and
+are not formally supported.***
 
-## Installation
+## Contents
 
-TODO: Add new installation steps
+*   [1. Installation](#1-installation)
+*   [2. User Interface](#2-user-interface)
+*   [3. How to Use It](#3-how-to-use-it)
+*   [4. Output](#4-output)
+*   [5. Notes](#5-notes)
+
+## 1. Installation
+
+1. Open a terminal and check if npm is installed with ```npm --version```. If not,
+install it following the instructions in the official npm docs [Install npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+2. Check if the Angular CLI is installed with ```ng --version```. If not,
+install it following the instructions in the official Angular docs [Install the Angular CLI](https://angular.io/guide/setup-local#install-the-angular-cli).
+3. Clone this repository with ```git clone https://github.com/google/conversion-audit.git``` or
+```git clone git@github.com:google/conversion-audit.git``` if SSH has been setup. More details on how
+to set it up [Setup SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh).
+4. Once cloned, go to the ***app*** folder with ```cd app``` and install the required dependencies with ```npm install```.
+5. Then, in order to load the Chrome extension correctly, all the Angular files need to be built into bundles in a single folder with the required html, js, css and manifest files that will used by the extension. To build the files execute the build script ```./build.sh```. After this, a new ***dist*** folder will be created. This is the folder that will be loaded in the Chrome Extensions page.
+Once the files are built, the console will show something like this:
+    ✔ Browser application bundle generation complete.
+    ✔ Copying assets complete.
+    ✔ Index html generation complete.
+NOTE: If for some reason the code is changed, it needs to be rebuilt and reloaded in Chrome again to identify the changes.
+6. Open a Chrome browser window, navigate the extensions management page by browsing to: chrome://extensions/
+7. On the top right of the page flip the "Developer Mode" switch to on.
+8. At the top of the page, on the left, click the “Load Unpacked Extension ...” button.
+9. Select the ***dist*** folder created when you built the source code.
+10. The tool should now be installed, and a new icon should show in the extensions toolbar on the top right corner of Chrome.
+11. Finally click the icon in the extension toolbar to open the tool.
 
 If the extension doesn't work due to chrome extensions restrictions in your
 organization you may be need to generate a key, follow instructions here:
@@ -38,7 +65,7 @@ https://developer.chrome.com/apps/manifest/key
 
 Add a new "key" field in manifest.json and set the value to your key.
 
-## User Interface
+## 2. User Interface
 
 TODO: Update user interface image
 
@@ -97,7 +124,7 @@ the **Settings** panel.
     Floodlight results and Global Site Tag (if enabled by user) results as
     separate CSV files. Can be clicked at any point during the audit process.
 
-## How to Use It
+## 3. How to Use It
 
 1.  Navigate to the page from which you want to start with in Chrome, usually
     the websites home page;
@@ -124,7 +151,7 @@ the **Settings** panel.
     point you can click the Download button to export a CSV version of the final
     Floodlight and Global Site Tag report (if enabled).
 
-## Output
+## 4. Output
 
 1.  *Page* - URL that was crawled for that result
 2.  *Tag Type* - Floodlight, Google Ads Conversion Tags, Google Analytics
@@ -144,7 +171,7 @@ the **Settings** panel.
     expected. We are just highlighting this for you to look into if you wish.
 12. *Errors* - Any implementation errors we observe
 
-## Notes
+## 5. Notes
 
 *   \*If you are seeing “False” for the “OGT” Column in the Conversion Tag
     Report section:
