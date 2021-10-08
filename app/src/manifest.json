@@ -1,0 +1,44 @@
+{
+    "name": "Conversion Tag Audit Tool",
+    "version": "1.0",
+    "description": "The Conversion Tag Audit Tool is a chrome extension that crawls a website and generates a gTag report by monitoring network traffic from the page.",
+    "manifest_version": 3,
+    "author": "gTech",
+    "action": {
+        "default_icon": {
+            "16": "assets/icon16.png",
+            "48": "assets/icon48.png",
+            "128": "assets/icon128.png"
+        },
+        "default_title": "Conversion Tag Audit Tool",
+        "default_popup": "launch.html"
+    },
+    "icons": {
+        "16": "assets/icon16.png",
+        "48": "assets/icon48.png",
+        "128": "assets/icon128.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "activeTab",
+        "identity",
+        "tabs",
+        "webRequest",
+        "cookies",
+        "webNavigation",
+        "scripting"
+    ],
+    "host_permissions" : [
+        "*://*/*",
+        "http://*/*",
+        "https://*/*"
+    ],
+    "oauth2": {
+        "client_id": "your_client_id",
+        "scopes": [
+        "https://www.googleapis.com/auth/dfatrafficking"
+        ]
+    }
+}
