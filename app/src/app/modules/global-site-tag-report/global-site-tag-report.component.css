@@ -40,3 +40,7 @@ table {
 td.mat-cell {
     padding: 5px;
 }
+
+th.mat-header-cell {
+    padding: 5px;
+}

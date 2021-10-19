@@ -83,8 +83,7 @@ export class GlobalSiteTagReportComponent implements OnInit, OnDestroy {
   buildColumns() {
     return [
       'url',
-      'tags',
-      'cookies'
+      'tags'
     ]
   }
 

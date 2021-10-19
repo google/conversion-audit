@@ -20,7 +20,9 @@
 ***************************************************************************/
 
 .stats-container {
-    padding-left: 15px
+    padding-left: 15px;
+    width: 50%;
+    margin: auto;
 }
 
 .stats-details {
@@ -31,7 +33,6 @@
 
 .card {
     background-color: rgba(0,0,0,.04);
-    width: 570px;
     margin: 5px 0px 15px 15px;
 }
 
