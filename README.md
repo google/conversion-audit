@@ -30,32 +30,52 @@ are not formally supported.***
 
 ## Contents
 
-*   [1. Installation](#1-installation)
-*   [2. User Interface](#2-user-interface)
-*   [3. How to Use It](#3-how-to-use-it)
-*   [4. Output](#4-output)
-*   [5. Notes](#5-notes)
+  - [2. Installation](#2-installation)
+  - [2. Installation for Developers](#2-installation-for-developers)
+  - [2. User Interface](#2-user-interface)
+  - [3. How to Use It](#3-how-to-use-it)
+  - [4. Output](#4-output)
+  - [5. Notes](#5-notes)
 
-## 1. Installation
+## 2. Installation
 
-1. Open a terminal and check if npm is installed with ```npm --version```. If not,
+1. Clone this repository using ```git clone https://github.com/google/conversion-audit.git``` or ```git clone git@github.com:google/conversion-audit.git``` if SSH has been setup.  More details on how
+to set it up here: [Setup SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh).
+2. In order to load the Chrome extension correctly, all the Angular files need to be built into bundles in a single folder with the required HTML, JS, CSS and manifest files that will used by the extension. In case the tool is used out of the box,
+a **dist** folder has already been generated. This is the folder that will be loaded in the Chrome Extensions page.
+2. Open a Chrome browser window, navigate the extensions management page by browsing to: chrome://extensions/
+3. On the top right of the page flip the "Developer Mode" switch to on.
+4. At the top of the page, on the left, click the “Load Unpacked Extension ...” button.
+5. Select the **dist** folder.
+6.  The tool should now be installed, and a new icon should show in the extensions toolbar on the top right corner of Chrome.
+7.  Finally click the icon in the extension toolbar to open the tool.
+
+If the extension doesn't work due to chrome extensions restrictions in your
+organization you may be need to generate a key, follow instructions here:
+https://developer.chrome.com/apps/manifest/key
+
+## 2. Installation for Developers
+
+Follow these steps in case the tool has had some changes that want to be incorporated:
+
+1. Open a terminal and check if npm is installed using ```npm --version```. If not,
 install it following the instructions in the official npm docs [Install npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-2. Check if the Angular CLI is installed with ```ng --version```. If not,
+2. Check if the Angular CLI is installed using ```ng --version```. If not,
 install it following the instructions in the official Angular docs [Install the Angular CLI](https://angular.io/guide/setup-local#install-the-angular-cli).
-3. Clone this repository with ```git clone https://github.com/google/conversion-audit.git``` or
+3. Clone this repository using ```git clone https://github.com/google/conversion-audit.git``` or
 ```git clone git@github.com:google/conversion-audit.git``` if SSH has been setup. More details on how
-to set it up [Setup SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh).
-4. Once cloned, go to the ***app*** folder with ```cd app``` and install the required dependencies with ```npm install```.
-5. Then, in order to load the Chrome extension correctly, all the Angular files need to be built into bundles in a single folder with the required html, js, css and manifest files that will used by the extension. To build the files execute the build script ```./build.sh```. After this, a new ***dist*** folder will be created. This is the folder that will be loaded in the Chrome Extensions page.
+to set it up: [Setup SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh).
+4. Once cloned, go to the ***app*** folder using ```cd app``` and install the required dependencies using ```npm install```.
+5. Then, in order to load the Chrome extension correctly, all the Angular files need to be built into bundles in a single folder with the required HTML, JS, CSS and manifest files that will used by the extension. To build the files execute the build script ```./build.sh```. After this, a new ***dist*** folder will be created. This is the folder that will be loaded in the Chrome Extensions page.
 - Once the files are built, the console will show something like this:
     - ✔ Browser application bundle generation complete.
     - ✔ Copying assets complete.
     - ✔ Index html generation complete.
-- NOTE: If for some reason the code is changed, it needs to be rebuilt and reloaded in Chrome again to identify the changes.
+- **NOTE:** If for some reason the code is changed, it needs to be rebuilt and reloaded in Chrome again to identify the changes.
 6. Open a Chrome browser window, navigate the extensions management page by browsing to: chrome://extensions/
 7. On the top right of the page flip the "Developer Mode" switch to on.
 8. At the top of the page, on the left, click the “Load Unpacked Extension ...” button.
-9. Select the ***dist*** folder created when you built the source code.
+9. Select the ***dist*** folder created when the source code was built.
 10. The tool should now be installed, and a new icon should show in the extensions toolbar on the top right corner of Chrome.
 11. Finally click the icon in the extension toolbar to open the tool.
 
@@ -67,7 +87,7 @@ Add a new "key" field in manifest.json and set the value to your key.
 
 ## 2. User Interface
 
-TODO: Update user interface image
+<img src="images/ui.png">
 
 In this section we are going to outline the functionality of each element within
 the **Settings** panel.
@@ -86,40 +106,33 @@ the **Settings** panel.
 
 4.  *URL Suffix* - Optional field to add URL suffix to URL string
 
-5.  *URL File* - Optional field to upload a csv list of URLs for the tool to
-    crawl (no URL volume limit)
-
-6.  *Enable Manual Mode - (defaults to off)* - If checked, the tool will run the
+5.  *Enable Manual Mode - (defaults to off)* - If checked, the tool will run the
     audit in manual mode meaning that it will not automatically visit and scrape
     web pages. Instead it will sit back passively and record any floodlight
     light activity as the user navigates through the website on their Chrome
     tab. This allows a user to audit particular pages, completing actions
     (button click, sign up, test purchase) to record activity based.
 
-7.  *Enable Global Site Tag Verification - (defaults to off)* - If checked, it
+6.  *Enable Global Site Tag Verification - (defaults to off)* - If checked, it
     will enable the feature to capture Global Site Tag and cookie information on
     each visited page (compatible with manual and default automatic mode) which
     will be displayed in a separate table similar to the floodlight table.
 
-8.  *Reset Global Site Tag Per Webpage - (defaults to off)* - If checked, this
-    will tack on the gclid and gclsrc to each url visited in the audit to make
-    sure the Global Site Tag (GST) can fire and cookies can be set properly
-    regardless of the entry point to the site. Default tool behavior will only
-    set these values on the base page of the audit and test the propagation of
-    he GST and cookies across the site.
-
-9.  *Show Page with No Conversion Tags - (defaults to off)* - If checked, tells
+7.  *Show Page with No Conversion Tags - (defaults to off)* - If checked, tells
     the tool to add an entry in the Conversion Tag Report table for web pages
     that were visited and where no conversion tags were captured. If this
     feature is not activated, by default the tool will only record entries on
     pages where conversion tags were present, leaving out pages with no
     conversion tags.
 
-10. *Run Button* - Will trigger the audit process once it is clicked. After the
+8.  *File Upload* - Optional field to upload a csv list of URLs for the tool to
+    crawl (no URL volume limit)
+
+9.  *Run Button* - Will trigger the audit process once it is clicked. After the
     first click, it will be replaced by a Stop button which will terminate the
     audit.
 
-11. *Download Button* - Allows the user to download the audit results as a csv
+10. *Download Button* - Allows the user to download the audit results as a csv
     file matching the information displayed in the UI. It will download
     Floodlight results and Global Site Tag (if enabled by user) results as
     separate CSV files. Can be clicked at any point during the audit process.
@@ -136,17 +149,14 @@ the **Settings** panel.
     manually.
 5.  (OPTIONAL) Check “Enable Global Site Tag Verification” to enable and record
     GST and cookie data during the audit.
-6.  (OPTIONAL) Check “Reset Global Site Tag Per Page” if you wish for cookie
-    values to be cleared after each page visit and for the gclid and gclsrc
-    values to be appended to each webpage.
-7.  (OPTIONAL) Check the “Show Pages with No Conversion Tags” in case you want
+6.  (OPTIONAL) Check the “Show Pages with No Conversion Tags” in case you want
     the report to include pages that are visited but do not cause floodlight
     tags to be fired. This is particularly useful if you want to determine pages
     that are not being tracked.
-8.  Click the Run button, and wait as the crawler starts to visit your site.
+7.  Click the Run button, and wait as the crawler starts to visit your site.
     Note, keep the tool popup open, if you close it by clicking anywhere on
     Chrome the process will stop, and you will only get a partial report.
-9.  Once the crawling is over and the number of pages visited is the same as the
+8.  Once the crawling is over and the number of pages visited is the same as the
     number of pages found then the audit will be marked as completed. At this
     point you can click the Download button to export a CSV version of the final
     Floodlight and Global Site Tag report (if enabled).
