@@ -83,7 +83,6 @@ export class SettingsFormComponent implements OnInit {
       'urlFile': new FormControl(''),
       'manualSet': new FormControl(false),
       'verificationEnabled': new FormControl(false),
-      'tagResetEnabled': new FormControl(false),
       'showNoFloodlight': new FormControl(false),
     })
   }
@@ -131,12 +130,10 @@ export class SettingsFormComponent implements OnInit {
   setupGlobalTagVerification(startingUrl: string, domain: string) {
     let verificationEnabled = this.settingsForm.get('verificationEnabled')?.value;
     let manualSet = this.settingsForm.get('manualSet')?.value;
-    let tagResetEnabled = this.settingsForm.get('tagResetEnabled')?.value;
     // Init Global Tag Verification
     this.globalTag.setDomain(domain);
     this.globalTag.setVerificationEnabled(verificationEnabled);
     this.globalTag.setManualSet(manualSet);
-    this.globalTag.setTagResetEnabled(tagResetEnabled);
     // Setup Global Tag Verification
     this.globalTag.globalVerificationReset();
     this.globalTag.clearFirstPartyCookies(startingUrl, domain);
@@ -175,14 +172,14 @@ export class SettingsFormComponent implements OnInit {
     this.crawler.setLoadTime(loadTime);
     this.crawler.setDomain(domain);
     this.crawler.setDiscovery(this.discovery);
-    let tagResetEnabled = this.settingsForm.get('tagResetEnabled')?.value;
     let showNoFloodlight = this.settingsForm.get('showNoFloodlight')?.value;
     let manualSet = this.settingsForm.get('manualSet')?.value;
     if (this.urls && this.urls.length > 0) {
       this.crawler.setUrls(this.urls);
     }
     this.crawler.onBeforeVisit((url: string) => {
-      let cUrl = constructUrl(url, tagResetEnabled, '', '', '');
+      // Send false to includeUserParams for now
+      let cUrl = constructUrl(url, false, '', '', '');
       if (cUrl) {
         this.globalTag.setUrl(cUrl);
       }
