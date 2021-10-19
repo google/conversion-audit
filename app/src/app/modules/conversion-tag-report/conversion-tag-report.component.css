@@ -58,3 +58,19 @@ td.mat-cell {
 th.mat-header-cell {
     padding: 5px;
 }
+
+.td-container p {
+    word-break: break-all;
+}
+
+.td-small-container {
+    width: 25%;
+}
+
+.td-medium-container {
+    width: 35%;
+}
+
+.td-big-container {
+    width: 50%;
+}

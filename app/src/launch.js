@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         chrome.windows.create({
           type: "popup",
           url: "index.html?winId=" + win.id + "&" + "tabId=" + tabs[0].id,
-          width: 1700,
+          width: 1300,
           height: 800
         }, newWindow => {
           window.close();

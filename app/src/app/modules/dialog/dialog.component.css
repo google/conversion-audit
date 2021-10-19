@@ -18,3 +18,7 @@
 *  products and are not formally supported.
 *
 ***************************************************************************/
+
+.dialog-content p {
+    word-break: break-all;
+}

@@ -11,7 +11,9 @@
             <!-- Page Column -->
             <ng-container matColumnDef="page">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Page</th>
-                <td mat-cell *matCellDef="let element">{{element.page}}</td>
+                <td mat-cell *matCellDef="let element" class="td-container td-medium-container">
+                    <p>{{element.page}}</p>
+                </td>
             </ng-container>
             <!-- Tag Type Column -->
             <ng-container matColumnDef="tagType">
@@ -31,13 +33,14 @@
             <!-- Network Call Column -->
             <ng-container matColumnDef="networkCall">
                 <th mat-header-cell *matHeaderCellDef>Network Call</th>
-                <td mat-cell *matCellDef="let element">
-                    <div class="crop-container">
+                <td mat-cell *matCellDef="let element" class="td-container td-big-container">
+                    <!--div class="crop-container">
                         <button mat-raised-button color="primary"
                             (click)="openDialog('Network Call', element.networkCall)">
-                            <mat-icon>info</mat-icon> Details
+                            <mat-icon>info</mat-icon> Details...
                         </button>
-                    </div>
+                    </div-->
+                    <p>{{element.networkCall}}</p>
                 </td>
             </ng-container>
             <!-- Floodlight ID Column -->
@@ -63,17 +66,23 @@
             <!-- Floodlight uVariables Order Column -->
             <ng-container matColumnDef="floodlightUVariables">
                 <th mat-header-cell *matHeaderCellDef>Floodlight uVariables</th>
-                <td mat-cell *matCellDef="let element">{{element.floodlightUVariables}}</td>
+                <td mat-cell *matCellDef="let element" class="td-container td-small-container">
+                    <p>{{element.floodlightUVariables}}</p>
+                </td>
             </ng-container>
             <!-- Warnings Column -->
             <ng-container matColumnDef="warnings">
                 <th mat-header-cell *matHeaderCellDef>Warnings</th>
-                <td mat-cell *matCellDef="let element">{{element.warnings}}</td>
+                <td mat-cell *matCellDef="let element">
+                    {{element.warnings}}
+                </td>
             </ng-container>
             <!-- Errors Column -->
             <ng-container matColumnDef="errors">
                 <th mat-header-cell *matHeaderCellDef>Errors</th>
-                <td mat-cell *matCellDef="let element">{{element.errors}}</td>
+                <td mat-cell *matCellDef="let element">
+                    {{element.errors}}
+                </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
