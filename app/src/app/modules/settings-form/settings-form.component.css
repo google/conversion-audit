@@ -40,7 +40,7 @@
 }
 
 .file-uploader-container {
-    margin-bottom: 25px;
+    margin-top: 20px;
 }
 
 .file-uploader-container input[type="file"] {
@@ -53,6 +53,7 @@
 
 .file-uploader-container div {
     font-size: 75%;
+    margin-top: 5px;
 }
 
 .custom-file-upload {
@@ -81,7 +82,7 @@
 
 .card {
     background-color: rgba(0,0,0,.04);
-    width: 60%;
+    width: 80%;
     margin: 35px 0px 15px 0px;
 }
 

@@ -43,19 +43,6 @@
                 </mat-error>
             </mat-form-field>
         </div>
-        <div class="form-item file-uploader-container">
-            <label for="file-upload" class="custom-file-upload">
-                <mat-icon matSuffix>cloud_upload</mat-icon><span> File Upload</span>
-            </label>
-            <input id="file-upload" formControlName="urlFile" type="file"
-                placeholder="(Optional) Upload a file of specifed URLs to scrape"
-                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                (change)="readFileContent($event)">
-            <span class="fileName">{{fileName}} </span>
-            <div>
-                <mat-hint>(Optional) Upload a file of specifed URLs to scrape</mat-hint>
-            </div>
-        </div>
         <div class="form-item">
             Enable Manual Mode
             <mat-slide-toggle color="accent" formControlName="manualSet">
@@ -71,6 +58,19 @@
             <label>Pages With No Conversion Tags</label>
             <mat-slide-toggle color="accent" formControlName="showNoFloodlight">
             </mat-slide-toggle>
+        </div>
+        <div class="form-item file-uploader-container">
+            <label for="file-upload" class="custom-file-upload">
+                <mat-icon matSuffix>cloud_upload</mat-icon><span> File Upload</span>
+            </label>
+            <input id="file-upload" formControlName="urlFile" type="file"
+                placeholder="(Optional) Upload a file of specifed URLs to scrape"
+                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                (change)="readFileContent($event)">
+            <span class="fileName">{{fileName}} </span>
+            <div>
+                <mat-hint>(Optional) Upload a file of specifed URLs to scrape</mat-hint>
+            </div>
         </div>
         <mat-card class="card">
             <mat-card-title>Disclaimer</mat-card-title>
