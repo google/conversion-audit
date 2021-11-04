@@ -47,8 +47,8 @@ a **dist** folder has already been generated under the **app** folder. This is t
 3. On the top right of the page flip the "Developer Mode" switch to on.
 4. At the top of the page, on the left, click the “Load Unpacked Extension ...” button.
 5. Go to the **app** folder and then select the **dist** folder.
-6.  The tool should now be installed, and a new icon should show in the extensions toolbar on the top right corner of Chrome.
-7.  Finally click the icon in the extension toolbar to open the tool.
+6. The tool should now be installed, and a new icon should show in the extensions toolbar on the top right corner of Chrome.
+7. Finally click the icon in the extension toolbar to open the tool.
 
 If the extension doesn't work due to chrome extensions restrictions in your
 organization you may be need to generate a key, follow instructions here:
