@@ -60,8 +60,6 @@ export class FloodlightTrackerService {
     setDcmInformation = (profileID: string, accountID: string) => {
         this.dcmProfileId = profileID || this.dcmProfileId;
         this.dcmAccountId = accountID || this.dcmAccountId;
-        /* TODO ae COMMENTED OUT FOR NOW SINCE IT IS NOT BEING USED.
-        this.dcm = new DCM(this.dcmProfileId, this.dcmAccountId);*/
     }
 
     setShowNoFloodlight = (value: boolean) => {
@@ -181,8 +179,6 @@ export class FloodlightTrackerService {
                     errors: 'No Conversion Tags detected'
                 };
             }
-            /* TODO ae COMMENTED OUT FOR NOW IN FAVOR OF THE NEW TABLE IN ANGULAR
-            this.addToTable(mode, this.tracker[page_url][0]);*/
             this.addTagToComponentTable(mode, this.tracker[page_url][0]);
         }
     }
@@ -282,7 +278,6 @@ export class FloodlightTrackerService {
         //let floodlight_uuid = `${fl_advertiser}_${activity}_${group}`; //Dedup
         let floodlight_uuid = `${id}`;   //No Dedup
         //page_url = page_url.split('?')[0]; //remove query parameters
-        // TODO ae CHECK COMMENTED - floodlight_url = $('<textarea/>').text(floodlight_url).html();
         data = {
             id: id,
             page_url: page_url,
@@ -314,14 +309,9 @@ export class FloodlightTrackerService {
             this.counter += 1;
             if (tag_type == 'Floodlight') {
                 this.extractWarnings(this.tracker[page_url][floodlight_uuid]);
-                /* TODO ae COMMETED OUT FOR NOW IN FAVOR OF THE NEW TABLE IN ANGULAR
-                this.addToTable('doubleclick', this.tracker[page_url][floodlight_uuid]);*/
                 this.addTagToComponentTable('doubleclick', this.tracker[page_url][floodlight_uuid]);
                 this.dcmVerification(this.tracker[page_url][floodlight_uuid]);
-            }
-            else {
-                /* TODO ae COMMETED OUT FOR NOW IN FAVOR OF THE NEW TABLE IN ANGULAR/*
-                this.addToTable('doubleclick', this.tracker[page_url][floodlight_uuid]);*/
+            } else {
                 this.addTagToComponentTable('doubleclick', this.tracker[page_url][floodlight_uuid]);
             }
         } else {
@@ -335,7 +325,6 @@ export class FloodlightTrackerService {
             // this.floodlightVerification(this.tracker[page_url][floodlight_uuid]);
         }
         // this.floodlightVerification(this.tracker[page_url][floodlight_uuid]);
-        this.updateTracker('doubleclick', this.tracker[page_url][floodlight_uuid]);
         return '';
     }
 
@@ -411,60 +400,8 @@ export class FloodlightTrackerService {
                 interactionType: matchIteraction ? matchIteraction[1] : ''
             };
             this.counter += 1;
-            /* TODO ae COMMETED OUT FOR NOW IN FAVOR OF THE NEW TABLE IN ANGULAR
-            this.addToTable('ga', this.tracker[page_url][matchId[1]]); */
             this.addTagToComponentTable('ga', this.tracker[page_url][matchId[1]]);
         }
-    }
-
-    updateTracker = (mode: string, floodlight_obj: any) => {
-        /*let tableRow = $(`#${floodlight_obj.id}`);
-        if (tableRow) {
-            let newContent = this.renderTrackerRow(mode, floodlight_obj);
-            tableRow.replaceWith(newContent);
-        }*/
-    }
-
-    addToTable = (mode: string, floodlight_obj: any) => {
-        /*let table;
-        let row = this.renderTrackerRow(mode, floodlight_obj);
-        if (mode === 'doubleclick') {
-            table = $('#floodlight-dcm-report-body');
-        }
-        if (table && row) {
-            table.append(row);
-        } else {
-            console.warn('Oops! Either I could not find the table or your row was empty');
-        }*/
-    }
-
-    renderTrackerRow = (mode: string, floodlight_obj: any) => {
-        /* TODO ae CHECK COMMENTED
-        let rowString;
-        let row = floodlight_obj;
-        if (mode === 'doubleclick') {
-            rowString = `<tr id="${row.id}">`;
-            rowString += `<td id="${row.id}-page-url">${row.page_url || 'None'}</td>`;
-            rowString += `<td id="${row.id}-tag-type">${row.tag_type || 'None'}</td>`;
-            rowString += `<td id="${row.id}-advertiser">${row.advertiser || 'None'}</td>`;
-            rowString += `<td id="${row.id}-event-snippet">${typeof row.event_snippet === 'boolean' ? row.event_snippet : 'None'}</td>`;
-            rowString += `<td id="${row.id}-network-call">${row.floodlights[0].url || 'None'}</td>`;
-            rowString += `<td id="${row.id}-floodlight-id">${row.floodlight_id ?
-                `<a target="_blank" href="${getCMLink(this.dcmAccountId, row.advertiser, row.floodlight_id)}">${row.floodlight_id}</a>` :
-                'None'}</td>`;
-            rowString += `<td id="${row.id}-activity">${row.activity || 'None'}</td>`;
-            rowString += `<td id="${row.id}-group">${row.group || 'None'}</td>`;
-            rowString += `<td id="${row.id}-order">${row.order || 'None'}</td>`;
-            // rowString += `<td id="${row.id}-network-call">${row.network_call_verification || 'None'}</td>`;//${tooltip}</td>`;
-            // rowString += `<td id="${row.id}-floodlight-cookie">${row.floodlight_cookie || 'None'}</td>`;
-            // rowString += `<td id="${row.id}-google-ads-cookie">${row.google_ads_cookie || 'None'}</td>`;
-            // rowString += `<td id="${row.id}-auiddc">${row.auiddc || 'None'}</td>`;
-            rowString += `<td id="${row.id}-uvars">${row.uvars || 'None'}</td>`;
-            rowString += `<td id="${row.id}-warnings" style="color: rgb(235,182,62);">${row.warnings || 'None'}</td>`;
-            rowString += `<td id="${row.id}-errors" style="color: rgb(216,80,64);">${row.errors || 'None'}</td>`;
-            rowString += '</tr>';
-        }
-        return rowString;*/
     }
 
     printTracker = (mode: string) => {
@@ -478,8 +415,6 @@ export class FloodlightTrackerService {
                     let url = encodeURI(flood.page_url);
                     url = url.replace(/#/g, '%23');
                     let tag_url = flood.floodlights[0].url;
-                    /* TODO ae COMMETED OUT THIS LINE ONLY tag_url = $('<textarea/>').html(tag_url).text();
-                    REMOVED getCMLink(this.dcmAccountId, flood.advertiser, flood.floodlight_id) */
                     // "${flood.network_call_verification ? flood.network_call_verification.replace(/<br\/>/g, ' ') : 'None'}",
                     // "${flood.floodlight_cookie || 'None'}","${flood.google_ads_cookie || 'None'}",
                     // "${flood.auiddc || 'None'}",
@@ -494,7 +429,6 @@ export class FloodlightTrackerService {
     }
 
     clearTracker = () => {
-        //TODO ae MODIFIED THIS LINE ONLY $('#floodlight-dcm-report-body').html("");
         Object.keys(this.tracker).forEach(page => {
             Object.keys(this.tracker[page]).forEach(floodlight => {
                 delete this.tracker[page][floodlight];
@@ -520,7 +454,6 @@ export class FloodlightTrackerService {
                             //     floodlight_obj.advertiser,
                             //     floodlight_obj.floodlight_id
                             // );
-                            this.updateTracker('doubleclick', floodlight_obj);
                         }
                     }).catch((res: any) => console.log('Error during api call: ', res));
             }
@@ -607,7 +540,6 @@ export class FloodlightTrackerService {
         // floodlight_obj.network_call_detail = network_errors.replace(/<br\/>/g, '&#10;');
         floodlight_obj.errors = network_errors;
         floodlight_obj.network_call_verification = [verify1, verify2, verify3].join('<br/>');
-        this.updateTracker('doubleclick', floodlight_obj);
     }
     //, 300)
 }
