@@ -136,7 +136,6 @@ export class SettingsFormComponent implements OnInit {
     this.globalTag.setManualSet(manualSet);
     // Setup Global Tag Verification
     this.globalTag.globalVerificationReset();
-    this.globalTag.clearFirstPartyCookies(startingUrl, domain);
     if (verificationEnabled) {
       this.globalTag.globalVerificationSetup(startingUrl, this.tabId, this.gclid);
       updateBehavior();
@@ -294,6 +293,16 @@ export class SettingsFormComponent implements OnInit {
         reader.readAsText(fileChooser.files[0]);
       }
     }
+  }
+
+  resetFile() {
+    this.settingsForm.patchValue({ 'urlFile' : '' });
+  }
+
+  removeFile() {
+    this.fileName = '';
+    // Reset urls
+    this.urls = [];
   }
 
   isInvalidInput(property: string) {

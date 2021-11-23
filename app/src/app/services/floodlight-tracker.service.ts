@@ -98,8 +98,9 @@ export class FloodlightTrackerService {
      * This helps to update the table in the coversion-tag-report component
      * when a new tag is found.
      * @param tagInformation - The tag found.
+     * TODO: added 'any; type for now, Union types not working with the dependencies update
     */
-    addToTableComponent(tagInformation: TagInformation | undefined) {
+    addToTableComponent(tagInformation: any) {
         this.addToTableEmitter.next(tagInformation);
     }
 
