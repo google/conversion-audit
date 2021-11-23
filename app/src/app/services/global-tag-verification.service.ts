@@ -182,7 +182,7 @@ export class GlobalTagVerificationService {
     }
 
     /**
-     * Removes all cookies under the given domain.
+     * Sample Code: Removes all cookies under the given domain.
      *
      * @param {string} url - url associated with cookie
      * @param {string} cookieDomain - specific domain which cookies belong to
@@ -277,8 +277,9 @@ export class GlobalTagVerificationService {
      * This helps to update the table in the global-site-tag-verification-report
      *  component when a new global tag is found.
      * @param globalTag - The global tag found.
+     * TODO: added 'any; type for now, Union types not working with the dependencies update
     */
-    addToTableComponent(globalTag: GlobalSiteTag | undefined) {
+    addToTableComponent(globalTag: any) {
         this.addToTableEmitter.next(globalTag);
     }
 
@@ -423,9 +424,7 @@ export class GlobalTagVerificationService {
                 }
             } else {
                 if (updatedTabId === this.verificationTabId) {
-                    if (this.tagResetEnabled && changeInfo.status === 'loading' && changeInfo.url) {
-                        this.clearFirstPartyCookies(tab_url, this.domain);
-                    } else if (changeInfo.status && domain_match) { //&& tab_url === verificationUrl) {
+                    if (changeInfo.status && domain_match) { //&& tab_url === verificationUrl) {
                         this.updateCookies(this.domain, tab_url);
                     }
                 }

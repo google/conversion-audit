@@ -244,7 +244,7 @@ export class WebCrawlerService {
                             link = null;
                         }
 
-                        // add clean URL to grpah to reduce duplication
+                        // add clean URL to graph to reduce duplication
                         let cleanLink = scrubUrl(link);
                         if (cleanLink && cleanLink != 'null' && cleanLink != 'undefined') {
                             this.found(cleanLink);

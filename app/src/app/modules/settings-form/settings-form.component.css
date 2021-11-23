@@ -56,6 +56,10 @@
     margin-top: 5px;
 }
 
+.file-uploader-container button {
+    margin-left: 10px;
+}
+
 .custom-file-upload {
     border: 5px solid #3f51b5;
     display: inline-block;
