@@ -82,7 +82,7 @@ export class SettingsFormComponent implements OnInit {
       'urlSuffix': new FormControl(''),
       'urlFile': new FormControl(''),
       'manualSet': new FormControl(false),
-      'verificationEnabled': new FormControl(false),
+      'verificationEnabled': new FormControl(true),
       'showNoFloodlight': new FormControl(false),
     })
   }
