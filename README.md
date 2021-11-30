@@ -30,25 +30,25 @@ are not formally supported.***
 
 ## Contents
 
-  - [2. Installation](#2-installation)
+  - [1. Installation](#1-installation)
   - [2. Installation for Developers](#2-installation-for-developers)
-  - [2. User Interface](#2-user-interface)
-  - [3. How to Use It](#3-how-to-use-it)
-  - [4. Output](#4-output)
-  - [5. Notes](#5-notes)
+  - [3. User Interface](#3-user-interface)
+  - [4. How to Use It](#4-how-to-use-it)
+  - [5. Output](#5-output)
+  - [6. Notes](#6-notes)
 
-## 2. Installation
+## 1. Installation
 
 1. Clone this repository using ```git clone https://github.com/google/conversion-audit.git``` or ```git clone git@github.com:google/conversion-audit.git``` if SSH has been setup.  More details on how
 to set it up here -> [Setup SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh). The code can also be downloaded as ZIP using the green **Code** button at the top.
 2. In order to load the Chrome extension correctly, all the Angular files need to be built into bundles in a single folder with the required HTML, JS, CSS and manifest files that will used by the extension. In case the tool is used out of the box,
 a **dist** folder has already been generated under the **app** folder. This is the folder that will be loaded in the Chrome Extensions page.
-2. Open a Chrome browser window, navigate the extensions management page by browsing to: chrome://extensions/
-3. On the top right of the page flip the "Developer Mode" switch to on.
-4. At the top of the page, on the left, click the “Load Unpacked Extension ...” button.
-5. Go to the **app** folder and then select the **dist** folder.
-6. The tool should now be installed, and a new icon should show in the extensions toolbar on the top right corner of Chrome.
-7. Finally click the icon in the extension toolbar to open the tool.
+3. Open a Chrome browser window, navigate the extensions management page by browsing to: chrome://extensions/
+4. On the top right of the page flip the "Developer Mode" switch to on.
+5. At the top of the page, on the left, click the “Load Unpacked Extension ...” button.
+6. Go to the **app** folder and then select the **dist** folder.
+7. The tool should now be installed, and a new icon should show in the extensions toolbar on the top right corner of Chrome.
+8. Finally click the icon in the extension toolbar to open the tool.
 
 If the extension doesn't work due to chrome extensions restrictions in your
 organization you may be need to generate a key, follow instructions here:
@@ -85,7 +85,7 @@ https://developer.chrome.com/apps/manifest/key
 
 Add a new "key" field in manifest.json and set the value to your key.
 
-## 2. User Interface
+## 3. User Interface
 
 <img src="images/ui.png">
 
@@ -137,7 +137,7 @@ the **Settings** panel.
     Floodlight results and Global Site Tag (if enabled by user) results as
     separate CSV files. Can be clicked at any point during the audit process.
 
-## 3. How to Use It
+## 4. How to Use It
 
 1.  Navigate to the page from which you want to start with in Chrome, usually
     the websites home page;
@@ -161,7 +161,7 @@ the **Settings** panel.
     point you can click the Download button to export a CSV version of the final
     Floodlight and Global Site Tag report (if enabled).
 
-## 4. Output
+## 5. Output
 
 1.  *Page* - URL that was crawled for that result
 2.  *Tag Type* - Floodlight, Google Ads Conversion Tags, Google Analytics
@@ -181,7 +181,7 @@ the **Settings** panel.
     expected. We are just highlighting this for you to look into if you wish.
 12. *Errors* - Any implementation errors we observe
 
-## 5. Notes
+## 6. Notes
 
 *   \*If you are seeing “False” for the “OGT” Column in the Conversion Tag
     Report section:
