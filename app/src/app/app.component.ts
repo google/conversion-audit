@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
   // should be displayed. Used for x-component communication between the
   // settings-form component and the global-site-tag-report component.
   private showGlobalSiteReportSubscription!: Subscription
-  showGlobalSiteTagReport: boolean = false;
+  showGlobalSiteTagReport: boolean = true;
 
   constructor(private globalTag: GlobalTagVerificationService) { }
 
