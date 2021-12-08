@@ -224,7 +224,10 @@ export class WebCrawlerService {
                 // so that it may correctly appended to relative links (eg. mycurrent.domain.com/#nav)
                 let current_base_url = currentDomainMatch ? currentDomainMatch[0] : '';
 
-                let domain_regex = new RegExp('^(https|http)?:\/\/(.+?\.+)?' + this.domain.replace('.', '\\.'));
+                // Note: this regex will allow for extended locales (ex. www.espn.com.br). This is not expected
+                // behavior for the current state of the tool.
+                // var domain_regex_old = new RegExp('^(https|http)?:\/\/(.+?\.+)?' + this.domain.replace('.', '\\.'));
+                let domain_regex = new RegExp('^http(s)?:\/\/www\.' + this.domain.replace('.', '\.') + '[^\.]');
 
                 for (let i = 0; i < links.length; i++) {
                     let link = links[i].substring(1, links[i].length - 1);
