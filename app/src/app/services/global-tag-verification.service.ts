@@ -160,7 +160,6 @@ export class GlobalTagVerificationService {
         this.globalSiteTags = {};
         this.id = 0;
         this.removeVerificationListener();
-        this.clearGlobalSiteTables();
     }
 
     /**
@@ -171,14 +170,6 @@ export class GlobalTagVerificationService {
         chrome.webRequest.onBeforeSendHeaders.removeListener(this.disableRequestCache)
         chrome.webRequest.onCompleted.removeListener(this.verificationProxy)
         chrome.tabs.onUpdated.removeListener(this.cookieVerification)
-    }
-
-    /**
-     * Clears contents of Global Site Tag table in the DOM.
-     */
-    clearGlobalSiteTables = () => {
-        /* TODO ae MODIFIED */
-        //$('#first-party-cookie-body, #network-call-body, #global-site-panel-url').html("");
     }
 
     /**
@@ -208,57 +199,6 @@ export class GlobalTagVerificationService {
             output += `${this.globalSiteTags[page].url || 'None'},${tags || 'None'},${cookies || 'None'}\r\n`;
         });
         return output;
-    }
-
-    /**
-     * Adds table row to specified table element using the row values passed.
-     *
-     * @param {string} tableName - id of table DOM element
-     * @param {string []} rowValues - array of data values to construct row from
-     */
-    addToGlobalSiteTable = (tableName: string, rowValues: []) => {
-        /* TODO ae MODIFIED */
-        /*var table;
-        var row = '';
-        if(tableName === 'first-party-cookie' && rowValues.length > 0) {
-            row = "<tr>" // start row
-            rowValues.forEach(v => {
-                row += `<td>${v}</td>`;
-            })
-            row += "</tr>" // end row
-        } else if(tableName === 'network-call' && rowValues.length > 0) {
-            row = "<tr>" // start row
-            rowValues.forEach(v => {
-                row += `<td>${v}</td>`;
-            })
-            row += "</tr>" // end row
-        }
-        table = $(`#${tableName}-body`);
-        if(table && row) {
-            table.append(row);
-        }*/
-    }
-
-    addGlobalSiteTag = (url: string) => {
-        /*var page_url = decodeURI(url);
-        var id = this.globalSiteTags[page_url].id;
-        var table = $('#network-call-body');
-        // var element = $(`td#${id}_tag`);
-        var element = $(`tr#global_tag_${id}`);
-        var tags = this.globalSiteTags[page_url].tags.length > 0 ?
-            this.globalSiteTags[page_url].tags.join(',</br>') : 'None';
-        var cookies = this.globalSiteTags[page_url].cookies.length > 0 ?
-            this.globalSiteTags[page_url].cookies.join(',</br>') : 'None';
-        var content;
-        content = `<td id="${id}_url">${page_url}</td>`;
-        content += `<td id="${id}_tag">${tags}</td>`;
-        content += `<td id="${id}_cookie">${cookies}</td>`;
-        if(element.length > 0) {
-            element.html(content);
-        } else {
-            var row = `<tr id="global_tag_${id}">${content}</tr>`;
-            table.append(row);
-        }*/
     }
 
     /**
@@ -354,7 +294,6 @@ export class GlobalTagVerificationService {
      * @param {number} tabId - id of the tab from which the request originated.
      */
     globalTagVerification = (event: any, tabId: number) => {
-        /* TODO ae MODIFIED */
         chrome.tabs.get(tabId, (tab) => {
             if (tab && tab.url) {
                 this.addToGSTMap(tab.url);
@@ -374,7 +313,6 @@ export class GlobalTagVerificationService {
      * @param {Event} event - webrequest chrome event.
      */
     parseTagManager = (pageUrl: string, event: any) => {
-        /* TODO ae MODIFIED */
         let u = event.url;
         let val;
         if (u.match(/googletagmanager\.com/)) {
@@ -383,8 +321,6 @@ export class GlobalTagVerificationService {
             if (val) {
                 if (this.globalSiteTags[pageUrl].tags.indexOf(val[1]) === -1) {
                     this.globalSiteTags[pageUrl].tags.push(val[1]);
-                    /* TODO ae COMMENTED OUT FOR NOW IN FAVOR OF THE NEW TABLE IN ANGULAR
-                    this.addGlobalSiteTag(pageUrl); */
                     this.addGlobalSiteTagToComponent(pageUrl);
                 }
             }
@@ -439,7 +375,6 @@ export class GlobalTagVerificationService {
      * @param {string} current_domain - cookie domain.
      */
     updateCookies = (currentDomain: string, url: string) => {
-        /* TODO ae MODIFIED */
         // var gclid = $('#gclid').val() !== '' ? $('#gclid').val() : null;
         chrome.cookies.getAll({ domain: currentDomain }, (cks) => {
             let cookie_map = {
@@ -471,8 +406,6 @@ export class GlobalTagVerificationService {
                 cookie_value = `${cookie_map.dc_cookie.name}=${cookie_map.dc_cookie.value}`;
                 if (this.globalSiteTags[cleanUrl].cookies.indexOf(cookie_value) === -1 && !found) {
                     this.globalSiteTags[cleanUrl].cookies.push(cookie_value);
-                    /* TODO ae COMMENTED OUT FOR NOW IN FAVOR OF THE NEW TABLE IN ANGULAR
-                    this.addGlobalSiteTag(cleanUrl); */
                     this.addGlobalSiteTagToComponent(cleanUrl);
                 }
             }
@@ -486,8 +419,6 @@ export class GlobalTagVerificationService {
                 cookie_value = `${cookie_map.aw_cookie.name}=${cookie_map.aw_cookie.value}`;
                 if (this.globalSiteTags[cleanUrl].cookies.indexOf(cookie_value) === -1 && !found) {
                     this.globalSiteTags[cleanUrl].cookies.push(cookie_value);
-                    /* TODO ae COMMENTED OUT FOR NOW IN FAVOR OF THE NEW TABLE IN ANGULAR
-                    this.addGlobalSiteTag(cleanUrl); */
                     this.addGlobalSiteTagToComponent(cleanUrl);
                 }
             }
