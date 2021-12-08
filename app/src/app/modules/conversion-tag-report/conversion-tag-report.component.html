@@ -61,18 +61,18 @@
             <ng-container matColumnDef="floodlightUVariables">
                 <th mat-header-cell *matHeaderCellDef>Floodlight uVariables</th>
                 <td mat-cell *matCellDef="let element" class="td-container td-small-container">
-                    <p>{{element.floodlightUVariables}}</p>
+                    <p>{{cleanupColumn(element.floodlightUVariables)}}</p>
                 </td>
             </ng-container>
             <!-- Warnings Column -->
             <ng-container matColumnDef="warnings">
                 <th mat-header-cell *matHeaderCellDef>Warnings</th>
-                <td mat-cell *matCellDef="let element">{{element.warnings}}</td>
+                <td mat-cell *matCellDef="let element">{{cleanupColumn(element.warnings)}}</td>
             </ng-container>
             <!-- Errors Column -->
             <ng-container matColumnDef="errors">
                 <th mat-header-cell *matHeaderCellDef>Errors</th>
-                <td mat-cell *matCellDef="let element">{{element.errors}}</td>
+                <td mat-cell *matCellDef="let element">{{cleanupColumn(element.errors)}}</td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -113,6 +113,14 @@ export class ConversionTagReportComponent implements OnInit, OnDestroy {
     return url;
   }
 
+  cleanupColumn(content: string) {
+    content = content.replace('<br/>', '').replace('<br>', '');
+    if(!content || content === 'null') {
+      return 'None'
+    }
+    return content;
+  }
+
   openDialog(title: string, url: string) {
     this.dialog.open(DialogComponent, {
       data: {

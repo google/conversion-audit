@@ -28,12 +28,12 @@ body, html {
 }
 
 .container button {
-    margin: 15px 0px 15px 60px;
+    margin: 15px 0px 15px 55px;
     border: 5px solid #3f51b5;
     padding: 6px 12px;
     cursor: pointer;
     border-radius: 5px;
-    width: 260px;
+    width: 270px;
     background-color: #3f51b5;
     color: #fff;
     display: flex;
