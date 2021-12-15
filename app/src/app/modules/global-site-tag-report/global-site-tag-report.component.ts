@@ -57,9 +57,17 @@ export class GlobalSiteTagReportComponent implements OnInit, OnDestroy {
     this.addToTableSubscription = this.globalTag.addToTableEmitter
       .subscribe((tagInformation: GlobalSiteTag | undefined) => {
         if (tagInformation) {
-          var rows = this.dataSource.data;
-          rows.push(tagInformation);
-          this.dataSource.data = rows;
+          let rows = this.dataSource.data;
+          // Update existing global site tag with most recet data
+          // instead of adding a new row.
+          let foundGlobalTag = this.getGlobalSiteTagById(rows, tagInformation);
+          if(foundGlobalTag) {
+            foundGlobalTag.tags = tagInformation.tags;
+          } else {
+            // Meants it is a new tag, only add new global tags
+            rows.push(tagInformation);
+            this.dataSource.data = rows;
+          }
           // Workaround to update the View 'manually' since it not being updated automatically.
           // TODO: investigate.
           this.changeDetectorRefs.detectChanges();
@@ -68,6 +76,16 @@ export class GlobalSiteTagReportComponent implements OnInit, OnDestroy {
           this.dataSource.data = [];
         }
       });
+  }
+
+  getGlobalSiteTagById(rows: GlobalSiteTag[], newGlobalSiteTag: GlobalSiteTag) {
+    let found = rows.filter(row => {
+      return row.id === newGlobalSiteTag.id;
+    })
+    if(found.length > 0) {
+      return found[0];
+    }
+    return null
   }
 
   ngAfterViewInit() {
