@@ -60,7 +60,7 @@ export class ConversionTagReportComponent implements OnInit, OnDestroy {
     this.addToTableSubscription = this.floodlightTracker.addToTableEmitter
       .subscribe((tagInformation: TagInformation | undefined) => {
         if (tagInformation) {
-          var rows = this.dataSource.data;
+          let rows = this.dataSource.data;
           rows.push(tagInformation);
           this.dataSource.data = rows;
           // Workaround to update the View 'manually' since it not being updated automatically.
