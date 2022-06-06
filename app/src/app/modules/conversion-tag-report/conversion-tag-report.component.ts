@@ -90,7 +90,6 @@ export class ConversionTagReportComponent implements OnInit, OnDestroy {
       'accountId',
       'gTag',
       'networkCall',
-      'floodlightId',
       'floodlightActivityTag',
       'floodlightActivityGroup',
       'floodlightSalesOrder',
