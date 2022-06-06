@@ -226,8 +226,7 @@ export class WebCrawlerService {
 
                 // Note: this regex will allow for extended locales (ex. www.espn.com.br). This is not expected
                 // behavior for the current state of the tool.
-                // var domain_regex_old = new RegExp('^(https|http)?:\/\/(.+?\.+)?' + this.domain.replace('.', '\\.'));
-                let domain_regex = new RegExp('^http(s)?:\/\/www\.' + this.domain.replace('.', '\.') + '[^\.]');
+                let domain_regex = new RegExp('^(?:https?:\/\/)?(?:www\.)?' + this.domain.replace('.', '\\.') + '(\/.*)?$');
 
                 for (let i = 0; i < links.length; i++) {
                     let link = links[i].substring(1, links[i].length - 1);
@@ -323,6 +322,7 @@ export class WebCrawlerService {
                 nextUrl = this.beforeVisit(nextUrl);
             }
             return new Promise((resolve, reject) => {
+                console.log('Visit: ', nextUrl);
                 var hasFloodlight = false;
 
                 if (nextUrl) {
