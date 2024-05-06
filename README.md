@@ -1,3 +1,5 @@
+# This solution has been deprecated
+
 # Conversion Audit Tool
 
 The Conversion Tag Audit Tool is a Chrome extension that crawls a website and
