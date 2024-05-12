@@ -270,7 +270,7 @@ export class WebCrawlerService {
         return results
 
         function injectCode() {
-            var links = document.documentElement.innerHTML.match(/href="(.*?)"/g);
+            var links = document.documentElement.innerText.match(/href="(.*?)"/g);
             var result = [];
             if (links) {
                 for (var i = 0; i < links.length; i++) {
